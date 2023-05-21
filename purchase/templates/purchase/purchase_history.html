@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lịch sử nhập kho
+{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <h2 class='mt-4'>Lịch sử nhập kho</h2>
+        <table class="table mt-4 table-bordered text-center">
+            <thead>
+              <tr>
+                <th scope="col">Mã hàng</th>
+                <th scope="col">Sản phẩm</th>
+                <th scope="col">Nhà cung cấp</th>
+                <th scope="col">Số lượng mua</th>
+                <th scope="col">Giá trên đơn vị</th>
+                <th scope="col">Tổng giá</th>
+                <th scope="col">Ngày</th>
+                <th scope="col">Chức năng</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for purchase in purchases %}
+                    <tr>
+                        <td>{{ purchase.order_no }}</td>
+                        <td>{{ purchase.sku }}</td>
+                        <td>{{ purchase.supplier }}</td>
+                        <td>{{ purchase.quantity }}</td>
+                        <td>{{ purchase.price }}</td>
+                        <td>{{ purchase.total_price }}</td>
+                        <td>{{ purchase.date }}</td>
+                        <td><a class='btn btn-danger' href={% url 'delete-purchase' purchase.order_no %}>Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+{% endblock %}

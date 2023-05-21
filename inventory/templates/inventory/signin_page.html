@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Đăng Nhập
+{% endblock  %}
+
+{% block content %}
+<div class="container w-50 p-3">
+    <h2>Đăng nhập</h2>
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputUsername" class="form-label">Tài khoản</label>
+            <input type="user" class="form-control" id="exampleInputUsername" name="username">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+        </div>
+
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+
+        {% if not_authenticated %}
+        <br>
+        <div class="alert alert-danger mt-5" role="alert">
+            <h2>Bạn đã nhập tên người dùng hoặc mật khẩu không hợp lệ. Vui lòng nhập tên người dùng và mật khẩu hợp lệ.</h2>
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock  %}

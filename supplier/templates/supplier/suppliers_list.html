@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Danh sách nhà cung cấp
+{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <h2 class='mt-4'>Danh sách nhà cung cấp</h2>
+        <table class="table mt-4 table-bordered text-center">
+            <thead>
+              <tr>
+                <th scope="col">Tên</th>
+                <th scope="col">Liên hệ</th>
+                <th scope="col">Email</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Chức năng</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for supplier in suppliers %}
+                    <tr>
+                        <td>{{ supplier.name }}</td>
+                        <td>{{ supplier.contact }}</td>
+                        <td>{{ supplier.email }}</td>
+                        <td>{{ supplier.address }}</td>
+                        <td><a class='btn btn-dark me-4' href={% url 'edit-supplier' supplier.name %}>Sửa</a>
+                            <a class='btn btn-danger' href={% url 'delete-supplier' supplier.name %}>Xóa</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+{% endblock %}
